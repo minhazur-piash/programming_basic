@@ -1,0 +1,19 @@
+#Java Shortcircuits
+The && and || operators "short-circuit", meaning they don't evaluate the right hand side if it isn't necessary.
+
+The & and | operators, when used as logical operators, always evaluate both sides.
+
+There is only one case of short-circuiting for each operator, and they are:
+
+false && ... - it is not necessary to know what the right hand side is, the result must be false
+true || ... - it is not necessary to know what the right hand side is, the result must be true
+Let's compare the behaviour in a simple example:
+
+public boolean longerThan(String input, int length) {
+    return input != null && input.length() > length;
+}
+
+public boolean longerThan(String input, int length) {
+    return input != null & input.length() > length;
+}
+The 2nd version uses the non-short-circuiting operator & and will throw a NullPointerException if input is null, but the 1st version will return false without an exception;
